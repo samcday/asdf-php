@@ -7,7 +7,7 @@ before_install:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated readline || brew upgrade readline; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install freetype bison bison27 gettext icu4c libiconv libpng
   homebrew/dupes/zlib curl; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update boost --c++11; fi 
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade boost --c++11; fi 
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PKG_CONFIG_PATH='/usr/local/opt/openssl/lib/pkgconfig'; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PHP_CONFIGURE_OPTIONS="--with-iconv=$(brew --prefix libiconv) --with-openssl-dir=$(brew --prefix openssl)"; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="$(brew --prefix bison)/bin:$(brew --prefix icu4c)/bin:$(brew --prefix icu4c)/sbin:$PATH"; fi
