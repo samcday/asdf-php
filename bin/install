@@ -89,7 +89,7 @@ os_based_configure_options() {
 
     local freetype_path=$(homebrew_package_path freetype)
     local bison27_path=$(homebrew_package_path bison@2.7)
-    local gettext_path=$(homebrew_package_path gettext)
+    # local gettext_path=$(homebrew_package_path gettext)
     local icu4c_path=$(homebrew_package_path icu4c)
     local jpeg_path=$(homebrew_package_path jpeg)
     local libpng_path=$(homebrew_package_path libpng)
@@ -97,7 +97,7 @@ os_based_configure_options() {
     local libxml2_path=$(homebrew_package_path libxml2)
     local zlib_path=$(homebrew_package_path zlib)
     local readline_path=$(homebrew_package_path readline)
-    local iconv_path=$(homebrew_package_path libiconv)
+    # local iconv_path=$(homebrew_package_path libiconv)
 
     if [ "$freetype_path" = "" ]; then
       export ASDF_PKG_MISSING="freetype"
@@ -109,11 +109,11 @@ os_based_configure_options() {
       export ASDF_PKG_MISSING="$ASDF_PKG_MISSING bison27"
     fi
 
-    if [ "$gettext_path" = "" ]; then
-      export ASDF_PKG_MISSING="$ASDF_PKG_MISSING gettext"
-    else
-      configure_options="$configure_options --with-gettext=$gettext_path"
-    fi
+    # if [ "$gettext_path" = "" ]; then
+    #   export ASDF_PKG_MISSING="$ASDF_PKG_MISSING gettext"
+    # else
+    #   configure_options="$configure_options --with-gettext=$gettext_path"
+    # fi
 
     if [ "$icu4c_path" = "" ]; then
       export ASDF_PKG_MISSING="$ASDF_PKG_MISSING icu4c"
@@ -155,15 +155,15 @@ os_based_configure_options() {
       configure_options="$configure_options --with-readline=$readline_path"
     fi
 
-    if [ "$iconv_path" != "" ]; then
-      configure_options="$configure_options --with-iconv=$iconv_path"
-    else
-      configure_options="$configure_options --without-iconv"
-    fi
+    # if [ "$iconv_path" != "" ]; then
+    #   configure_options="$configure_options --with-iconv=$iconv_path"
+    # else
+    #   configure_options="$configure_options --without-iconv"
+    # fi
   else
     local jpeg_path=$(locate libjpeg.so | head -n 1)
     local libpng_path=$(locate libpng.so | head -n 1)
-    configure_options="--with-openssl --with-curl --with-zlib --with-readline --with-gettext"
+    configure_options="--with-openssl --with-curl --with-zlib --with-readline" # --with-gettext"
 
     if [ "$jpeg_path" = "" ]; then
       export ASDF_PKG_MISSING="$ASDF_PKG_MISSING jpeg"
