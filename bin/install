@@ -32,7 +32,7 @@ install_php() {
         # Build PHP
         ./buildconf --force || exit 1
         ./configure $configure_options || exit 1
-        make || exit 1
+        make -j ${ASDF_CONCURRENCY} || exit 1
         # make test || exit 1
         make install || exit 1
     )
