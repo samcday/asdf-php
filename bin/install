@@ -37,12 +37,12 @@ install_php() {
         make install || exit 1
 
         php=${install_path}/bin/php
-        EXPECTED_SIGNATURE="$(curl -s https://composer.github.io/installer.sig)"
+        EXPECTED_SIGNATURE="$(curl --retry 3 --fail -s https://composer.github.io/installer.sig)"
         ${php} -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         ACTUAL_SIGNATURE="$(${php} -r "echo hash_file('sha384', 'composer-setup.php');")"
         if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
         then
-            >&2 echo 'ERROR: Invalid installer signature'
+            >&2 echo "ERROR: Invalid installer signature. Expected: ${EXPECTED_SIGNATURE}, got: ${ACTUAL_SIGNATURE}"
             exit 1
         fi
 
